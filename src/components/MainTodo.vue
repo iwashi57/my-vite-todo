@@ -40,8 +40,13 @@ const changeCheck = (id) => {
   </div>
   <div class="box_list">
     <div class="todo_list" v-for="todo in todoListRef" :key="todo.id">
-      <div class="todo">
-        <input type="checkbox" class="check" /><label>{{ todo.task }}</label>
+      <div class="todo" :class="{ fin: todo.checked }">
+        <input
+          type="checkbox"
+          class="check"
+          @change="changeCheck(todo.id)"
+          :checked="todo.checked"
+        /><label>{{ todo.task }}</label>
       </div>
       <div class="btns">
         <button class="btn green" @click="showTodo(todo.id)">編</button>
@@ -93,8 +98,8 @@ const changeCheck = (id) => {
 }
 .check {
   border: 1px solid red;
+  appearance: auto;
   transform: scale(1.6);
-  padding: 5px;
   margin: 0px 16px 2px 6px;
 }
 .btns {
@@ -106,5 +111,10 @@ const changeCheck = (id) => {
 }
 .pink {
   background-color: #ff4081;
+}
+.fin {
+  text-decoration: line-through;
+  background-color: #ddd;
+  color: #777;
 }
 </style>
